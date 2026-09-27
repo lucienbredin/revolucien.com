@@ -1,0 +1,152 @@
+/* The blog's entire stylesheet. Everything is here.
+   Typography rules: 65 characters per line, 18 px, line height 1.6, softened contrast. */
+
+:root {
+  --text: #222;
+  --muted: #6b6b6b;
+  --bg: #fbfbf9;
+  --link: #1a4fa3;
+  --rule: #e2e2dd;
+  --code-bg: #f0f0ec;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e6e6e2;
+    --muted: #9a9a94;
+    --bg: #161616;
+    --link: #8ab4f8;
+    --rule: #2e2e2e;
+    --code-bg: #232323;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 18px; }
+@media (max-width: 600px) { html { font-size: 17px; } }
+
+body {
+  margin: 0;
+  padding: 2.5rem 1.25rem 4rem;
+  max-width: 65ch;
+  margin-inline: auto;
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Header */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: 3rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.site-title { font-weight: bold; color: var(--text); font-size: 1.1rem; }
+.site-header nav a { margin-left: 1.25rem; color: var(--muted); }
+.site-header nav a:first-child { margin-left: 0; }
+
+/* Headings */
+h1, h2, h3 { line-height: 1.25; font-weight: bold; letter-spacing: -0.01em; }
+h1 { font-size: 1.9rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.35rem; margin: 2.5rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 2rem 0 0.5rem; }
+
+.meta { color: var(--muted); font-size: 0.9rem; margin: 0 0 2.5rem; }
+
+/* Post list on the home page */
+.intro { margin-bottom: 2.5rem; }
+.year { color: var(--muted); font-size: 0.95rem; font-weight: normal; margin-top: 2rem; }
+.post-list { list-style: none; padding: 0; margin: 0; }
+.post-list li { display: flex; gap: 1.25rem; align-items: baseline; padding: 0.35rem 0; }
+.post-list time { color: var(--muted); font-size: 0.85rem; min-width: 6.5rem; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) {
+  .post-list li { flex-direction: column; gap: 0; padding: 0.6rem 0; }
+}
+
+/* Body text */
+p, ul, ol { margin: 0 0 1.25rem; }
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+}
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; }
+figcaption { text-align: center; color: var(--muted); font-size: 0.85rem; }
+
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  background: var(--code-bg);
+  border-radius: 4px;
+}
+code { padding: 0.1em 0.35em; }
+pre { padding: 1rem; overflow-x: auto; line-height: 1.45; }
+pre code { padding: 0; background: none; }
+
+table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--rule); }
+
+/* Embedded videos (YouTube, Vimeo): always 16/9 and mobile friendly */
+iframe { max-width: 100%; }
+.content iframe[src*="youtube"], .content iframe[src*="vimeo"] {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  margin: 1.5rem 0;
+}
+
+/* Previous / next navigation */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.9rem;
+}
+.post-nav a:last-child { margin-left: auto; text-align: right; }
+
+/* Footer and newsletter */
+.site-footer {
+  margin-top: 4rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.newsletter { margin-bottom: 1.5rem; color: var(--text); font-size: 1rem; }
+.newsletter p { margin-bottom: 0.5rem; }
+.newsletter form { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.newsletter input {
+  flex: 1 1 14rem;
+  font: inherit;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+}
+.newsletter button {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--text);
+  border-radius: 4px;
+  background: var(--text);
+  color: var(--bg);
+  cursor: pointer;
+}

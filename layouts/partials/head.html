@@ -1,0 +1,25 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{- $title := .Site.Title -}}
+  {{- if not .IsHome }}{{ $title = printf "%s · %s" .Title .Site.Title }}{{ end -}}
+  <title>{{ $title }}</title>
+  {{- $desc := .Site.Params.description -}}
+  {{- if .IsPage }}{{ with .Summary }}{{ $desc = . | plainify | truncate 160 }}{{ end }}{{ end -}}
+  {{- with .Description }}{{ $desc = . }}{{ end -}}
+  <meta name="description" content="{{ $desc }}">
+  <meta name="author" content="{{ .Site.Params.author }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "index.xml" | absURL }}">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13' font-family='serif'>L</text></svg>">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta name="twitter:card" content="summary">
+  {{- if .IsPage }}
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02" }}">
+  {{- end }}
+  <link rel="stylesheet" href="/style.css">
+</head>

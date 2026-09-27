@@ -1,0 +1,46 @@
+# Site configuration. Lines starting with # are comments.
+# The only values you are likely to change are title, params.description and params.author.
+
+baseURL = "https://revolucien.com/"
+title = "Lucien Bredin"
+locale = "en"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+timeZone = "Europe/Paris"
+
+# No taxonomies (tags, categories): an essay blog does not need them.
+disableKinds = ["taxonomy", "term"]
+
+# Posts live in content/posts/. A post's URL is simply /file-name/
+[permalinks]
+  posts = "/:contentbasename/"
+
+[params]
+  description = "Essays on product, marketing and how things get built."
+  author = "Lucien Bredin"
+  # Newsletter form (Buttondown). Leave empty to hide the form.
+  # Once you have a Buttondown account, put your username here, e.g. "lucienbredin".
+  buttondown = ""
+
+# Allow raw HTML inside posts (needed for embedded YouTube videos).
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    noClasses = false
+
+# The RSS feed only contains posts, not fixed pages.
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[services]
+  [services.rss]
+    limit = 20
+
+# No hidden analytics, no third-party JavaScript.
+[privacy]
+  [privacy.youtube]
+    privacyEnhanced = true

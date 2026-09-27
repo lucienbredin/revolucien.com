@@ -1,0 +1,12 @@
+  <footer class="site-footer">
+    {{ with .Site.Params.buttondown }}
+    <div class="newsletter">
+      <p>Get new posts by email.</p>
+      <form action="https://buttondown.com/api/emails/embed-subscribe/{{ . }}" method="post" target="_blank">
+        <input type="email" name="email" placeholder="you@example.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    {{ end }}
+    <p>© {{ now.Year }} {{ .Site.Params.author }} · <a href="/index.xml">RSS</a></p>
+  </footer>
