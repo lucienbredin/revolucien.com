@@ -1,0 +1,12 @@
+// Cloudflare deployment settings. Cloudflare reads this file on every build.
+{
+  "name": "revolucien-com",
+  "compatibility_date": "2026-09-26",
+  "build": {
+    "command": "hugo --gc --minify"
+  },
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
